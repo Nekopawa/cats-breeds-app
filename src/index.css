@@ -16,10 +16,12 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Poppins", sans-serif;
+    color: var(--main-text);
 }
 
 #root {
     max-width: 100%;
+    height: 100vh;
     margin: 0 auto;
     display: flex;
     flex-direction: column;

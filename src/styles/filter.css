@@ -1,0 +1,50 @@
+#filter__bar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 16px;
+    margin: 16px 0;
+}
+
+#filter__input-wrapper {
+    position: relative;
+}
+
+#filter__input-wrapper::before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    background: url("/icons/search.svg") center / contain no-repeat;
+    pointer-events: none;
+}
+
+#filter__input {
+    width: 180px;
+    height: 40px;
+    border: solid 1px var(--border);
+    border-radius: 10px;
+    padding-left: 38px;
+}
+
+#filter__input::placeholder {
+    color: var(--secondary-text);
+}
+
+#filter__input:focus {
+    outline: none;
+}
+
+#filter__button {
+    background-color: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+#filter__button:active {
+    background-color: var(--border);
+}
