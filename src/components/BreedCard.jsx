@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import "../styles/breedCard.css";
 
-export default function BreedCard({ breed }) {
+export default function BreedCard({ breed, favorites, onToggleFavorite }) {
     const [imageUrl, setImageUrl] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const { name, temperament, origin, lifeSpan, image } = breed;
+    const { id, name, temperament, origin, lifeSpan, image } = breed;
     const temperamentSplit = temperament.split(", ", 3);
-    const isFavorite = false;
+
+    const isFavorite = favorites.find((breed) => breed.id === id);
 
     useEffect(() => {
         async function getImageUrl() {
@@ -75,9 +76,17 @@ export default function BreedCard({ breed }) {
 
                 <picture className="information__favorite">
                     {isFavorite ? (
-                        <img src="./icons/favorite_purple.svg"></img>
+                        <img
+                            src="./icons/favorite_purple.svg"
+                            alt="Favorite icon"
+                            onClick={() => onToggleFavorite(id)}
+                        ></img>
                     ) : (
-                        <img src="./icons/favorite_grey.svg"></img>
+                        <img
+                            src="./icons/favorite_grey.svg"
+                            alt="Favorite icon"
+                            onClick={() => onToggleFavorite(id)}
+                        ></img>
                     )}
                 </picture>
             </div>

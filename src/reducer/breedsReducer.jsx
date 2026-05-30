@@ -41,5 +41,25 @@ export function reducer(state, action) {
                 breeds: action.payload,
             };
         }
+        case ACTION_TYPES.TOGGLE_FAVORITE: {
+            const favorite = action.payload;
+            const favoriteExists = state.favorites.find(
+                (breed) => breed.id === favorite.id,
+            );
+            let newFavorites;
+
+            if (!favoriteExists) {
+                newFavorites = [...state.favorites, favorite];
+            } else {
+                newFavorites = state.favorites.filter(
+                    (breed) => breed.id !== favorite.id,
+                );
+            }
+
+            return {
+                ...state,
+                favorites: newFavorites,
+            };
+        }
     }
 }

@@ -1,7 +1,13 @@
 import "../styles/breedList.css";
 import BreedCard from "./BreedCard";
 
-export default function BreedList({ breeds, loading, error }) {
+export default function BreedList({
+    breeds,
+    loading,
+    error,
+    favorites,
+    onToggleFavorite,
+}) {
     return (
         <main id="breed-list">
             <p id="list__info">
@@ -15,7 +21,14 @@ export default function BreedList({ breeds, loading, error }) {
             ) : (
                 <section id="breed-list__container">
                     {breeds.map((breed) => {
-                        return <BreedCard key={breed.id} breed={breed} />;
+                        return (
+                            <BreedCard
+                                key={breed.id}
+                                breed={breed}
+                                favorites={favorites}
+                                onToggleFavorite={onToggleFavorite}
+                            />
+                        );
                     })}
                 </section>
             )}

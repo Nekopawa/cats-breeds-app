@@ -14,6 +14,11 @@ import {
 function App() {
     const [state, dispatch] = useReducer(reducer, INITIAL_STATE, init);
 
+    function handleToggleFavorite(breedId) {
+        const favorite = state.breeds.find((breed) => breed.id === breedId);
+        dispatch({ type: ACTION_TYPES.TOGGLE_FAVORITE, payload: favorite });
+    }
+
     useEffect(() => {
         async function fetchData() {
             try {
@@ -67,6 +72,8 @@ function App() {
                 breeds={state.breeds}
                 loading={state.loading}
                 error={state.error}
+                favorites={state.favorites}
+                onToggleFavorite={handleToggleFavorite}
             />
             <Navbar />
         </>
