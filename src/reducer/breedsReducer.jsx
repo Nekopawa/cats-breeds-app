@@ -1,5 +1,6 @@
 export const INITIAL_STATE = {
     breeds: [],
+    filteredBreeds: [],
     loading: false,
     error: null,
     selectedPage: "explore",
@@ -11,6 +12,7 @@ export const ACTION_TYPES = {
     SEARCH_ERROR: "SEARCH_ERROR",
     SEARCH_SUCCESS: "SEARCH_SUCCESS",
     TOGGLE_FAVORITE: "TOGGLE_FAVORITE",
+    INPUT_SEARCH: "INPUT_SEARCH",
 };
 
 export function init(initialState) {
@@ -39,6 +41,7 @@ export function reducer(state, action) {
                 loading: false,
                 error: null,
                 breeds: action.payload,
+                filteredBreeds: action.payload,
             };
         }
         case ACTION_TYPES.TOGGLE_FAVORITE: {
@@ -59,6 +62,16 @@ export function reducer(state, action) {
             return {
                 ...state,
                 favorites: newFavorites,
+            };
+        }
+        case ACTION_TYPES.INPUT_SEARCH: {
+            const filtered = state.breeds.filter((breed) =>
+                breed.name.toLowerCase().includes(action.input.toLowerCase()),
+            );
+
+            return {
+                ...state,
+                filteredBreeds: filtered,
             };
         }
     }

@@ -14,6 +14,10 @@ import {
 function App() {
     const [state, dispatch] = useReducer(reducer, INITIAL_STATE, init);
 
+    function handleSearch(searchValue) {
+        dispatch({ type: ACTION_TYPES.INPUT_SEARCH, input: searchValue });
+    }
+
     function handleToggleFavorite(breedId) {
         const favorite = state.breeds.find((breed) => breed.id === breedId);
         dispatch({ type: ACTION_TYPES.TOGGLE_FAVORITE, payload: favorite });
@@ -67,9 +71,9 @@ function App() {
     return (
         <>
             <Header />
-            <Filter />
+            <Filter onSearch={handleSearch} />
             <BreedList
-                breeds={state.breeds}
+                breeds={state.filteredBreeds}
                 loading={state.loading}
                 error={state.error}
                 favorites={state.favorites}
