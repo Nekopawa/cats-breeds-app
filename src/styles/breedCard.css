@@ -1,0 +1,71 @@
+.breed__card {
+    width: 90%;
+    height: 180px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 16px;
+    background-color: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--secondary-text);
+    position: relative;
+}
+
+.breed__card:last-child {
+    margin-bottom: 120px;
+}
+
+.breed__image {
+    height: 180px;
+    width: 150px;
+    flex-shrink: 0;
+}
+
+.breed__image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px 0 0 10px;
+}
+
+.breed__image-message {
+    height: 180px;
+    flex: 0 0 150px;
+    background-color: var(--secondary-text);
+    color: white;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.breed__information {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.breed__information h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+}
+
+.information__origin,
+.information__life-span {
+    display: flex;
+}
+
+.information__origin p,
+.information__life-span p {
+    margin-left: 6px;
+}
+
+.information__favorite img {
+    height: 24px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
