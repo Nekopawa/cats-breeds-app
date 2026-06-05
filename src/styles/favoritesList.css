@@ -1,0 +1,10 @@
+#favorites-list__container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#favorite-list__info {
+    margin: 16px 0 16px 30px;
+}

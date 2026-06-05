@@ -1,15 +1,35 @@
 import "../styles/header.css";
 
-export default function Header() {
+export default function Header({ page }) {
     return (
         <header>
             <picture className="header__icons">
-                <img src="./icons/paw.svg" alt="Cat paw"></img>
+                {page === "explore" ? (
+                    <img src="./icons/paw.svg" alt="Cat paw"></img>
+                ) : page === "favorites" ? (
+                    <img src="./icons/favorite_purple.svg" alt="Heart"></img>
+                ) : (
+                    <p>...</p>
+                )}
             </picture>
-            <h1 id="header__title">Cat Breed Explorer</h1>
+
+            {page === "explore" ? (
+                <h1 id="header__title">Cat Breed Explorer</h1>
+            ) : page === "favorites" ? (
+                <h1 id="header__title">Favorites</h1>
+            ) : (
+                <h1>More</h1>
+            )}
+
             <button id="header__button">
                 <picture className="header__icons">
-                    <img src="./icons/lines.svg" alt="More"></img>
+                    {page === "explore" ? (
+                        <img src="./icons/lines.svg" alt="More"></img>
+                    ) : page === "favorites" ? (
+                        <img src="./icons/bin.svg" alt="Delete"></img>
+                    ) : (
+                        <p>...</p>
+                    )}
                 </picture>
             </button>
         </header>

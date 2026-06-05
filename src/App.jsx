@@ -1,7 +1,6 @@
 import { useEffect, useReducer } from "react";
 import "./App.css";
 import BreedList from "./components/BreedList";
-import Filter from "./components/Filter";
 import Header from "./components/Header";
 import Navbar from "./components/Navbar";
 import {
@@ -10,6 +9,7 @@ import {
     INITIAL_STATE,
     reducer,
 } from "./reducer/breedsReducer";
+import FavoritesList from "./components/FavoritesList";
 
 function App() {
     const [state, dispatch] = useReducer(reducer, INITIAL_STATE, init);
@@ -21,6 +21,10 @@ function App() {
     function handleToggleFavorite(breedId) {
         const favorite = state.breeds.find((breed) => breed.id === breedId);
         dispatch({ type: ACTION_TYPES.TOGGLE_FAVORITE, payload: favorite });
+    }
+
+    function handleChangePage(page) {
+        dispatch({ type: ACTION_TYPES.CHANGE_PAGE, page: page });
     }
 
     useEffect(() => {
@@ -70,16 +74,28 @@ function App() {
 
     return (
         <>
-            <Header />
-            <Filter onSearch={handleSearch} />
-            <BreedList
-                breeds={state.filteredBreeds}
-                loading={state.loading}
-                error={state.error}
-                favorites={state.favorites}
-                onToggleFavorite={handleToggleFavorite}
+            <Header page={state.selectedPage} />
+            {state.selectedPage === "explore" ? (
+                <BreedList
+                    breeds={state.filteredBreeds}
+                    loading={state.loading}
+                    error={state.error}
+                    favorites={state.favorites}
+                    onToggleFavorite={handleToggleFavorite}
+                    onSearch={handleSearch}
+                />
+            ) : state.selectedPage === "favorites" ? (
+                <FavoritesList
+                    favorites={state.favorites}
+                    onToggleFavorite={handleToggleFavorite}
+                />
+            ) : (
+                <p>More...</p>
+            )}
+            <Navbar
+                onChangePage={handleChangePage}
+                selectedPage={state.selectedPage}
             />
-            <Navbar />
         </>
     );
 }

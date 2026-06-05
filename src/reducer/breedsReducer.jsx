@@ -13,10 +13,22 @@ export const ACTION_TYPES = {
     SEARCH_SUCCESS: "SEARCH_SUCCESS",
     TOGGLE_FAVORITE: "TOGGLE_FAVORITE",
     INPUT_SEARCH: "INPUT_SEARCH",
+    CHANGE_PAGE: "CHANGE_PAGE",
 };
 
 export function init(initialState) {
-    return initialState;
+    try {
+        const savedFavorites = localStorage.getItem("favorites");
+
+        if (!savedFavorites) return initialState;
+
+        const parsedFavorites = JSON.parse(savedFavorites);
+        return Array.isArray(parsedFavorites)
+            ? { ...initialState, favorites: parsedFavorites }
+            : initialState;
+    } catch {
+        return initialState;
+    }
 }
 
 export function reducer(state, action) {
@@ -58,6 +70,7 @@ export function reducer(state, action) {
                     (breed) => breed.id !== favorite.id,
                 );
             }
+            localStorage.setItem("favorites", JSON.stringify(newFavorites));
 
             return {
                 ...state,
@@ -73,6 +86,15 @@ export function reducer(state, action) {
                 ...state,
                 filteredBreeds: filtered,
             };
+        }
+        case ACTION_TYPES.CHANGE_PAGE: {
+            return {
+                ...state,
+                selectedPage: action.page,
+            };
+        }
+        default: {
+            return state;
         }
     }
 }

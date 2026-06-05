@@ -48,6 +48,7 @@
 }
 
 .breed__information h2 {
+    width: 180px;
     font-size: 20px;
     font-weight: 600;
     color: black;
@@ -67,5 +68,5 @@
     height: 24px;
     position: absolute;
     right: 10px;
-    top: 10px;
+    top: 12px;
 }

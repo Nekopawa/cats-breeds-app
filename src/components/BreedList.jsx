@@ -1,5 +1,6 @@
 import "../styles/breedList.css";
 import BreedCard from "./BreedCard";
+import Filter from "./Filter";
 
 export default function BreedList({
     breeds,
@@ -7,9 +8,12 @@ export default function BreedList({
     error,
     favorites,
     onToggleFavorite,
+    onSearch,
 }) {
     return (
         <main id="breed-list">
+            <Filter onSearch={onSearch} />
+
             <p id="list__info">
                 <span id="list__count">{breeds.length}</span> breeds found
             </p>
