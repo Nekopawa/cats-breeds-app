@@ -31,6 +31,7 @@ export default function Navbar({ onChangePage, selectedPage }) {
                 <p>Favorites</p>
             </button>
 
+            {/* future feature
             <button
                 className="navbar__button"
                 onClick={() => onChangePage("more")}
@@ -39,7 +40,7 @@ export default function Navbar({ onChangePage, selectedPage }) {
                     <img src="./icons/dots_more.svg"></img>
                 </picture>
                 <p>More</p>
-            </button>
+            </button>*/}
         </nav>
     );
 }

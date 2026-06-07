@@ -27,13 +27,7 @@ export default function Header({ page }) {
 
                 <button id="header__button">
                     <picture className="header__icons">
-                        {page === "explore" ? (
-                            <img src="./icons/lines.svg" alt="More"></img>
-                        ) : page === "favorites" ? (
-                            <img src="./icons/bin.svg" alt="Delete"></img>
-                        ) : (
-                            <p>...</p>
-                        )}
+                        <img src="./icons/lines.svg" alt="More"></img>
                     </picture>
                 </button>
             </header>
