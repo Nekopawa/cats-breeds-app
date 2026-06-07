@@ -16,6 +16,12 @@ export default function BreedCard({
 
     const isFavorite = favorites.find((breed) => breed.id === id);
 
+    function handleClickFavorite(event) {
+        //prevents from triggering onOpenDetails
+        event.stopPropagation();
+        onToggleFavorite(id);
+    }
+
     useEffect(() => {
         async function getImageUrl() {
             try {
@@ -84,13 +90,13 @@ export default function BreedCard({
                         <img
                             src="./icons/favorite_purple.svg"
                             alt="Favorite icon"
-                            onClick={() => onToggleFavorite(id)}
+                            onClick={handleClickFavorite}
                         ></img>
                     ) : (
                         <img
                             src="./icons/favorite_grey.svg"
                             alt="Favorite icon"
-                            onClick={() => onToggleFavorite(id)}
+                            onClick={handleClickFavorite}
                         ></img>
                     )}
                 </picture>
