@@ -1,3 +1,8 @@
+#favorites-list {
+    display: flex;
+    flex-direction: column;
+}
+
 #favorites-list__container {
     width: 100%;
     display: flex;
@@ -7,4 +12,41 @@
 
 #favorite-list__info {
     margin: 16px 0 16px 30px;
+}
+
+#favorites-list__empty {
+    width: 90%;
+    height: 200px;
+    background-color: #e9e9f5;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    padding: 20px;
+    align-self: center;
+}
+
+#favorites-list__empty p:nth-child(2) {
+    font-weight: 600;
+}
+
+#favorites-list__empty p:nth-child(3) {
+    font-size: 14px;
+}
+
+#favorites-list__empty picture {
+    height: 60px;
+    width: 60px;
+    background-color: var(--lighter-accent);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+#favorites-list__empty img {
+    height: 30px;
 }

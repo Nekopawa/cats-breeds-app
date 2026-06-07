@@ -9,15 +9,22 @@ export default function FavoritesList({
 }) {
     return (
         <section id="favorites-list">
+            <p id="favorite-list__info">
+                <span id="list__count">{favorites.length}</span> favorites
+            </p>
+
             {favorites.length === 0 ? (
-                <p>No favorites yet.</p>
+                <div id="favorites-list__empty">
+                    <picture>
+                        <img src="./icons/favorite_purple_border.svg"></img>
+                    </picture>
+                    <p>No favorites yet?</p>
+                    <p>
+                        Tap the heart on any breed to add it to your favorites.
+                    </p>
+                </div>
             ) : (
                 <section>
-                    <p id="favorite-list__info">
-                        <span id="list__count">{favorites.length}</span>{" "}
-                        favorites
-                    </p>
-
                     <section id="favorites-list__container">
                         {favorites.map((breed) => {
                             return (
