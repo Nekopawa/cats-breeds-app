@@ -25,6 +25,26 @@ export default function Filter({
         onChangeFilter("temperaments", newTemperaments);
     }
 
+    function handleToggleChildDogFriendly(option, value) {
+        let newOptions;
+
+        if (value !== "any") {
+            const isSelected = filters[option].includes(value);
+
+            newOptions = isSelected
+                ? filters[option].filter((item) => item !== value)
+                : [...filters[option], value];
+            newOptions = newOptions.filter((item) => item !== "any");
+
+            if (newOptions.length === 0 || newOptions.length === 3)
+                newOptions = ["any"];
+        } else {
+            newOptions = ["any"];
+        }
+
+        onChangeFilter(option, newOptions);
+    }
+
     return (
         <section id="filter__bar">
             <div id="filter__input-wrapper">
@@ -97,20 +117,54 @@ export default function Filter({
                     <div id="options__child-friendly">
                         <h3>Child Friendly</h3>
                         <ul>
-                            <li className="selected">Any</li>
-                            <li>Low</li>
-                            <li>Medium</li>
-                            <li>High</li>
+                            {["any", "low", "medium", "high"].map((option) => {
+                                return (
+                                    <li
+                                        key={option}
+                                        className={
+                                            filters.childFriendly.includes(
+                                                option,
+                                            )
+                                                ? "selected"
+                                                : ""
+                                        }
+                                        onClick={() =>
+                                            handleToggleChildDogFriendly(
+                                                "childFriendly",
+                                                option,
+                                            )
+                                        }
+                                    >
+                                        {option}
+                                    </li>
+                                );
+                            })}
                         </ul>
                     </div>
 
                     <div id="options__dog-friendly">
                         <h3>Dog Friendly</h3>
                         <ul>
-                            <li className="selected">Any</li>
-                            <li>Low</li>
-                            <li>Medium</li>
-                            <li>High</li>
+                            {["any", "low", "medium", "high"].map((option) => {
+                                return (
+                                    <li
+                                        key={option}
+                                        className={
+                                            filters.dogFriendly.includes(option)
+                                                ? "selected"
+                                                : ""
+                                        }
+                                        onClick={() =>
+                                            handleToggleChildDogFriendly(
+                                                "dogFriendly",
+                                                option,
+                                            )
+                                        }
+                                    >
+                                        {option}
+                                    </li>
+                                );
+                            })}
                         </ul>
                     </div>
 
