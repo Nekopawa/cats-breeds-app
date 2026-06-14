@@ -174,8 +174,15 @@ export default function Filter({
 
                     <div id="options__origin">
                         <h3>Origin</h3>
-                        <select>
-                            <option>All Origins</option>
+                        <select
+                            onChange={(event) =>
+                                onChangeFilter(
+                                    "origin",
+                                    event.target.value || null,
+                                )
+                            }
+                        >
+                            <option value="">All Origins</option>
                             {originList.map((origin) => (
                                 <option key={origin}>{origin}</option>
                             ))}

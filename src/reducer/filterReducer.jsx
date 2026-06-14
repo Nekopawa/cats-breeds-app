@@ -15,6 +15,7 @@ export const FILTER_ACTION_TYPES = {
 export function filterReducer(state, action) {
     switch (action.type) {
         case FILTER_ACTION_TYPES.UPDATE_FILTER: {
+            console.log(`${action.payload.key} - ${action.payload.value}`);
             return {
                 ...state,
                 [action.payload.key]: action.payload.value,
