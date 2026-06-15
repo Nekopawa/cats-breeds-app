@@ -8,6 +8,7 @@ export default function Filter({
     filters,
     onChangeFilter,
     onResetFilter,
+    onFilter,
 }) {
     const [filterIsOpen, setFilterIsOpen] = useState(false);
     const [sortIsOpen, setSortIsOpen] = useState(false);
@@ -30,23 +31,13 @@ export default function Filter({
     }
 
     function handleToggleChildDogFriendly(option, value) {
-        let newOptions;
+        const isSelected = filters[option] === value;
 
-        if (value !== "any") {
-            const isSelected = filters[option].includes(value);
-
-            newOptions = isSelected
-                ? filters[option].filter((item) => item !== value)
-                : [...filters[option], value];
-            newOptions = newOptions.filter((item) => item !== "any");
-
-            if (newOptions.length === 0 || newOptions.length === 3)
-                newOptions = ["any"];
+        if (isSelected) {
+            onChangeFilter(option, "any");
         } else {
-            newOptions = ["any"];
+            onChangeFilter(option, value);
         }
-
-        onChangeFilter(option, newOptions);
     }
 
     function handleChangeMinWeight(event) {
@@ -209,6 +200,7 @@ export default function Filter({
                     <div id="options__origin">
                         <h3>Origin</h3>
                         <select
+                            defaultValue=""
                             onChange={(event) =>
                                 onChangeFilter(
                                     "origin",
@@ -216,9 +208,7 @@ export default function Filter({
                                 )
                             }
                         >
-                            <option value="" selected={!filters.origin}>
-                                All Origins
-                            </option>
+                            <option value="">All Origins</option>
                             {originList.map((origin) => (
                                 <option key={origin}>{origin}</option>
                             ))}
@@ -265,7 +255,9 @@ export default function Filter({
                         </div>
                     </div>
 
-                    <button id="filter__apply-button">Apply filters</button>
+                    <button id="filter__apply-button" onClick={onFilter}>
+                        Apply filters
+                    </button>
                 </section>
             )}
         </section>

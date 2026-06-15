@@ -1,7 +1,7 @@
 export const FILTER_INITIAL_STATE = {
     temperaments: [],
-    childFriendly: ["any"],
-    dogFriendly: ["any"],
+    childFriendly: "any",
+    dogFriendly: "any",
     hypoallergenic: false,
     origin: null,
     weight: [0, 10],
@@ -15,7 +15,6 @@ export const FILTER_ACTION_TYPES = {
 export function filterReducer(state, action) {
     switch (action.type) {
         case FILTER_ACTION_TYPES.UPDATE_FILTER: {
-            console.log(`${action.payload.key} - ${action.payload.value}`);
             return {
                 ...state,
                 [action.payload.key]: action.payload.value,

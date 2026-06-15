@@ -92,6 +92,11 @@ function App() {
 
     function handleResetFilter() {
         filterDispatch({ type: FILTER_ACTION_TYPES.RESET_FILTER });
+        appDispatch({ type: APP_ACTION_TYPES.RESET_FILTER });
+    }
+
+    function handleFilterBreeds() {
+        appDispatch({ type: APP_ACTION_TYPES.FILTER, payload: filterState });
     }
 
     useEffect(() => {
@@ -121,6 +126,11 @@ function App() {
                         description: breed.description,
                         wikipedia: breed.wikipedia_url,
                         image: breed.reference_image_id,
+                        childFriendly: breed.child_friendly,
+                        dogFriendly: breed.dog_friendly,
+                        hypoallergenic:
+                            breed.hypoallergenic === 1 ? true : false,
+                        weight: breed.weight.metric,
                     };
                 });
 
@@ -162,6 +172,7 @@ function App() {
                     onOpenDetails={handleOpenDetails}
                     onChangeFilter={handleChangeFilter}
                     onResetFilter={handleResetFilter}
+                    onFilter={handleFilterBreeds}
                 />
             ) : appState.selectedPage === "favorites" ? (
                 <FavoritesList

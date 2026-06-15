@@ -18,6 +18,8 @@ export const APP_ACTION_TYPES = {
     CHANGE_PAGE: "CHANGE_PAGE",
     OPEN_DETAILS: "OPEN_DETAILS",
     CLOSE_DETAILS: "CLOSE_DETAILS",
+    FILTER: "FILTER",
+    RESET_FILTER: "RESET_FILTER",
 };
 
 export function init(initialState) {
@@ -112,8 +114,96 @@ export function reducer(state, action) {
                 selectedPage: state.previousPage,
             };
         }
+        case APP_ACTION_TYPES.FILTER: {
+            return {
+                ...state,
+                filteredBreeds: filterBreeds(state, action),
+            };
+        }
+        case APP_ACTION_TYPES.RESET_FILTER: {
+            return {
+                ...state,
+                filteredBreeds: state.breeds,
+            };
+        }
         default: {
             return state;
         }
+    }
+}
+
+function filterBreeds(state, action) {
+    const filters = action.payload;
+    let filtered = state.breeds;
+
+    //temperaments
+    if (filters.temperaments.length > 0) {
+        filtered = state.breeds.filter((breed) => {
+            const breedTemperaments = breed.temperament
+                .split(",")
+                .map((temperament) => {
+                    return temperament.toLowerCase().trim();
+                });
+
+            return filters.temperaments.some((temperament) =>
+                breedTemperaments.includes(temperament),
+            );
+        });
+    }
+
+    //childFriendly
+    if (filters.childFriendly !== "any") {
+        const minValue = getMinValue(filters.childFriendly);
+        filtered = filtered.filter((breed) => breed.childFriendly >= minValue);
+    }
+
+    //dogFriendly
+    if (filters.dogFriendly !== "any") {
+        const minValue = getMinValue(filters.dogFriendly);
+        filtered = filtered.filter((breed) => breed.dogFriendly >= minValue);
+    }
+
+    //hypoallergenic
+    if (filters.hypoallergenic) {
+        filtered = filtered.filter((breed) => breed.hypoallergenic);
+    }
+
+    //origin
+    if (filters.origin) {
+        filtered = filtered.filter(
+            (breed) =>
+                breed.origin.toLowerCase() === filters.origin.toLowerCase(),
+        );
+    }
+
+    //weight
+    if (filters.weight[0] > 0 || filters.weight[1] < 10) {
+        filtered = filtered.filter((breed) => {
+            let breedWeight = breed.weight.split("-");
+            breedWeight = breedWeight.map((weigth) => weigth.trim());
+
+            return (
+                breedWeight[0] >= filters.weight[0] &&
+                breedWeight[1] <= filters.weight[1]
+            );
+        });
+    }
+
+    return filtered;
+}
+
+function getMinValue(option) {
+    switch (option) {
+        case "low":
+            return 1;
+
+        case "medium":
+            return 3;
+
+        case "high":
+            return 4;
+
+        default:
+            return 1;
     }
 }

@@ -15,6 +15,7 @@ export default function BreedList({
     onOpenDetails,
     onChangeFilter,
     onResetFilter,
+    onFilter,
 }) {
     return (
         <main id="breed-list">
@@ -25,6 +26,7 @@ export default function BreedList({
                 filters={filters}
                 onChangeFilter={onChangeFilter}
                 onResetFilter={onResetFilter}
+                onFilter={onFilter}
             />
 
             <p id="list__info">
