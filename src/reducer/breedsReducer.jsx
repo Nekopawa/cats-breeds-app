@@ -74,6 +74,7 @@ export function reducer(state, action) {
                     (breed) => breed.id !== favorite.id,
                 );
             }
+            newFavorites.sort((a, b) => a.name.localeCompare(b.name));
             localStorage.setItem("favorites", JSON.stringify(newFavorites));
 
             return {
