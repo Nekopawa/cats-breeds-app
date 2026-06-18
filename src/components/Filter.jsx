@@ -68,7 +68,10 @@ export default function Filter({
 
             <button
                 className="filter__button"
-                onClick={() => setFilterIsOpen(!filterIsOpen)}
+                onClick={() => {
+                    setSortIsOpen(false);
+                    setFilterIsOpen(!filterIsOpen);
+                }}
             >
                 <picture>
                     <img src="./icons/filter.svg"></img>
@@ -76,7 +79,13 @@ export default function Filter({
                 <p>Filter</p>
             </button>
 
-            <button className="filter__button">
+            <button
+                className="filter__button"
+                onClick={() => {
+                    setFilterIsOpen(false);
+                    setSortIsOpen(!sortIsOpen);
+                }}
+            >
                 <picture>
                     <img src="./icons/sort.svg"></img>
                 </picture>
@@ -264,6 +273,127 @@ export default function Filter({
                     >
                         Apply filters
                     </button>
+                </section>
+            )}
+
+            {sortIsOpen && (
+                <section id="sort__options">
+                    <div id="sort__header">
+                        <button
+                            id="sort__close-button"
+                            onClick={() => setSortIsOpen(false)}
+                        >
+                            <picture>
+                                <img src="./icons/close.svg"></img>
+                            </picture>
+                        </button>
+                        <h2>Sort By</h2>
+                    </div>
+
+                    <ul id="sort__container">
+                        <li>
+                            <label
+                                className="sort__item"
+                                htmlFor="sort_name_asc"
+                            >
+                                <picture>
+                                    <img src="./icons/sort_name.svg"></img>
+                                </picture>
+                                <p>Name (A - Z)</p>
+                                <input
+                                    type="radio"
+                                    name="sort"
+                                    id="sort_name_asc"
+                                    value="name_asc"
+                                ></input>
+                            </label>
+                        </li>
+                        <li>
+                            <label
+                                className="sort__item"
+                                htmlFor="sort_name_desc"
+                            >
+                                <picture>
+                                    <img src="./icons/sort_name.svg"></img>
+                                </picture>
+                                <p>Name (Z - A)</p>
+                                <input
+                                    type="radio"
+                                    name="sort"
+                                    id="sort_name_desc"
+                                    value="name_desc"
+                                ></input>
+                            </label>
+                        </li>
+                        <li>
+                            <label
+                                className="sort__item"
+                                htmlFor="sort_weight_asc"
+                            >
+                                <picture>
+                                    <img src="./icons/weight.svg"></img>
+                                </picture>
+                                <p>Weight (Low to High)</p>
+                                <input
+                                    type="radio"
+                                    name="sort"
+                                    id="sort_weight_asc"
+                                    value="weight_asc"
+                                ></input>
+                            </label>
+                        </li>
+                        <li>
+                            <label
+                                className="sort__item"
+                                htmlFor="sort_weight_desc"
+                            >
+                                <picture>
+                                    <img src="./icons/weight.svg"></img>
+                                </picture>
+                                <p>Weight (High to Low)</p>
+                                <input
+                                    type="radio"
+                                    name="sort"
+                                    id="sort_weight_desc"
+                                    value="weight_desc"
+                                ></input>
+                            </label>
+                        </li>
+                        <li>
+                            <label
+                                className="sort__item"
+                                htmlFor="sort_life-span_asc"
+                            >
+                                <picture>
+                                    <img src="./icons/calendar.svg"></img>
+                                </picture>
+                                <p>Life Span (Low to High)</p>
+                                <input
+                                    type="radio"
+                                    name="sort"
+                                    id="sort_life-span_asc"
+                                    value="life_span_asc"
+                                ></input>
+                            </label>
+                        </li>
+                        <li>
+                            <label
+                                className="sort__item"
+                                htmlFor="sort_life-span_desc"
+                            >
+                                <picture>
+                                    <img src="./icons/calendar.svg"></img>
+                                </picture>
+                                <p>Life Span (High to Low)</p>
+                                <input
+                                    type="radio"
+                                    name="sort"
+                                    id="sort_life-span_desc"
+                                    value="life_span_desc"
+                                ></input>
+                            </label>
+                        </li>
+                    </ul>
                 </section>
             )}
         </section>
