@@ -452,10 +452,16 @@ export default function Filter({
                                     }
                                 </p>
                                 <picture>
-                                    <img
-                                        src="./icons/close_purple.svg"
-                                        alt={`Delete selected sort button`}
-                                    ></img>
+                                    <button
+                                        type="button"
+                                        className="delete_filter_button"
+                                        onClick={() => onChangeSort("name_asc")}
+                                    >
+                                        <img
+                                            src="./icons/close_purple.svg"
+                                            alt={`Delete selected sort button`}
+                                        ></img>
+                                    </button>
                                 </picture>
                             </li>
                         )}
