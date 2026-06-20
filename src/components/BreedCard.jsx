@@ -6,7 +6,7 @@ export default function BreedCard({
     onToggleFavorite,
     onOpenDetails,
 }) {
-    const { id, name, temperament, origin, lifeSpan } = breed;
+    const { id, name, temperament, origin, lifeSpan, weight } = breed;
     const temperamentSplit = temperament.split(", ", 3);
 
     const isFavorite = favorites.find((breed) => breed.id === id);
@@ -33,6 +33,13 @@ export default function BreedCard({
                         <img src="./icons/world.svg" alt="World icon"></img>
                     </picture>
                     <p>{origin}</p>
+                </div>
+
+                <div className="information__weight">
+                    <picture>
+                        <img src="./icons/weight.svg" alt="Weight icon"></img>
+                    </picture>
+                    <p>{weight}kg</p>
                 </div>
 
                 <div className="information__life-span">

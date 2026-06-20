@@ -55,12 +55,15 @@
 }
 
 .information__origin,
-.information__life-span {
+.information__life-span,
+.information__weight {
     display: flex;
+    align-items: center;
 }
 
 .information__origin p,
-.information__life-span p {
+.information__life-span p,
+.information__weight p {
     margin-left: 6px;
 }
 
