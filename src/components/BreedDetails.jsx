@@ -14,6 +14,10 @@ export default function BreedDetails({
         affection,
         energy,
         adaptability,
+        childFriendly,
+        dogFriendly,
+        weight,
+        hypoallergenic,
         temperament,
         description,
         wikipedia,
@@ -29,6 +33,12 @@ export default function BreedDetails({
         } else {
             return "Medium";
         }
+    }
+
+    function getWeight() {
+        const weightArray = weight.split("-");
+
+        return `${weightArray[0].trim()} - ${weightArray[1].trim()}kg`;
     }
 
     return (
@@ -54,8 +64,8 @@ export default function BreedDetails({
             <section id="details__card">
                 <h2>{name}</h2>
 
-                <section id="details__origin-life-span">
-                    <div className="details__origin-wrapper">
+                <section id="details__header">
+                    <div>
                         <picture>
                             <img src="./icons/world.svg" alt="World"></img>
                         </picture>
@@ -64,7 +74,8 @@ export default function BreedDetails({
                             <p>{origin}</p>
                         </div>
                     </div>
-                    <div className="details__life-span-wrapper">
+
+                    <div>
                         <picture>
                             <img
                                 src="./icons/calendar.svg"
@@ -76,12 +87,22 @@ export default function BreedDetails({
                             <p>{lifeSpan} years</p>
                         </div>
                     </div>
+
+                    <div>
+                        <picture>
+                            <img src="./icons/weight.svg" alt="Weight"></img>
+                        </picture>
+                        <div>
+                            <p>Weight</p>
+                            <p>{getWeight()}</p>
+                        </div>
+                    </div>
                 </section>
 
                 <section id="details__info">
                     <div className="info__item">
                         <picture>
-                            <img src="./icons/favorite_purple.svg"></img>
+                            <img src="./icons/favorite_grey.svg"></img>
                         </picture>
                         <p>Affection Level</p>
                         <p>{getLevelDescription(affection)}</p>
@@ -101,6 +122,30 @@ export default function BreedDetails({
                         </picture>
                         <p>Adaptability</p>
                         <p>{getLevelDescription(adaptability)}</p>
+                    </div>
+
+                    <div className="info__item">
+                        <picture>
+                            <img src="./icons/child_friendly.svg"></img>
+                        </picture>
+                        <p>Child Friendly</p>
+                        <p>{getLevelDescription(childFriendly)}</p>
+                    </div>
+
+                    <div className="info__item">
+                        <picture>
+                            <img src="./icons/dog_friendly.svg"></img>
+                        </picture>
+                        <p>Dog Friendly</p>
+                        <p>{getLevelDescription(dogFriendly)}</p>
+                    </div>
+
+                    <div className="info__item">
+                        <picture>
+                            <img src="./icons/hypoallergenic.svg"></img>
+                        </picture>
+                        <p>Hypoallergenic</p>
+                        <p>{hypoallergenic ? "Yes" : "No"}</p>
                     </div>
                 </section>
 

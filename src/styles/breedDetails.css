@@ -50,22 +50,22 @@
     font-size: 1rem;
 }
 
-#details__origin-life-span {
+#details__header {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    place-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
 }
 
-#details__origin-life-span > div {
+#details__header > div {
     display: flex;
     flex-direction: row;
 }
 
-#details__origin-life-span > div p:nth-child(2) {
+#details__header > div p:nth-child(2) {
     font-weight: 600;
 }
 
-#details__origin-life-span img {
+#details__header img {
     height: 30px;
     width: 30px;
     margin-right: 10px;
@@ -74,21 +74,34 @@
 #details__info {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     place-items: center;
+    gap: 20px 10px;
     padding: 10px;
     border-radius: 10px;
     border: 1px solid var(--border);
     text-align: center;
     font-size: 14px;
+    position: relative;
 }
 
 #details__info div {
     width: 100%;
 }
 
-#details__info div:nth-child(2) {
+#details__info div:nth-child(2),
+#details__info div:nth-child(5) {
     border-left: 1px solid var(--border);
     border-right: 1px solid var(--border);
+}
+
+#details__info::after {
+    content: "";
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    top: 50%;
+    border-bottom: 1px solid var(--border);
 }
 
 #details__info p:nth-child(3) {
