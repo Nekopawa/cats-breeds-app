@@ -171,7 +171,16 @@ function App() {
 
     return (
         <>
-            <Header page={displayedPage} isWideScreen={isWideScreen} />
+            <div id="header-navbar__container">
+                <Header page={displayedPage} isWideScreen={isWideScreen} />
+
+                {(!isDetails || isWideScreen) && (
+                    <Navbar
+                        onChangePage={handleChangePage}
+                        selectedPage={displayedPage}
+                    />
+                )}
+            </div>
 
             {(isExplore ||
                 (isWideScreen &&
@@ -274,13 +283,6 @@ function App() {
                     />
                 )}
             </div>
-
-            {(!isDetails || isWideScreen) && (
-                <Navbar
-                    onChangePage={handleChangePage}
-                    selectedPage={displayedPage}
-                />
-            )}
         </>
     );
 }
