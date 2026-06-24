@@ -1,16 +1,77 @@
-# React + Vite
+# Cat Breed Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive React application for exploring cat breeds from around the world.
+Users can browse breeds, view detailed information, search, sort, filter, and save their favorite cats.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Browse 67 cat breeds
+- Detailed breed information
+- Search breeds by name
+- Filter by:
+    - Temperament
+    - Origin
+    - Child Friendly
+    - Dog Friendly
+    - Hypoallergenic
+    - Weight
+- Sort by:
+    - Name (A-Z / Z-A)
+    - Weight
+    - Life Span
+- Favorites system
+- Persistent favorites using Local Storage
+- Responsive design for desktop and mobile devices
 
-## React Compiler
+## Technologies
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- JavaScript (ES6+)
+- Vite
+- CSS3
+- The Cat API
 
-## Expanding the ESLint configuration
+## Screenshots
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+<div align="left">
+  <img src="./public/screenshots/widescreen.PNG" alt="Widescreen" height="500px" float="left">
+</div>
+<div align="left">
+  <img src="./public/screenshots/favorites.PNG" alt="Favorites" height="500px" float="left">
+</div>
+<div align="left">
+  <img src="./public/screenshots/filters.PNG"alt="Filters" height="500px" float="left">
+</div>
+<div align="left">
+  <img src="./public/screenshots/mobile.PNG"alt="Filters" height="500px" float="left">
+  <img src="./public/screenshots/mobile-details.PNG"alt="Filters" height="500px" float="left">
+</div>
+
+## Installation
+
+```bash
+git clone https://github.com/Nekopawa/cats-breeds-app.git
+
+cd cats-breeds-app
+
+npm install
+
+npm run dev
+```
+
+## API
+
+This project uses The Cat API:
+
+https://thecatapi.com/
+
+## Future Improvements
+
+- Dark mode
+- Additional breed statistics
+- Pagination
+- Compare breeds
+
+## Author
+
+Rafaela Aline Hoffmann
